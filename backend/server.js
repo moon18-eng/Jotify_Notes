@@ -21,10 +21,17 @@ const createTable = async () => {
         content TEXT,
         bg_color VARCHAR(20) DEFAULT 'white',
         text_color VARCHAR(20) DEFAULT 'black',
-        text_size INT DEFAULT 14,
+        -- text_size removed intentionally
         is_pinned BOOLEAN DEFAULT FALSE
       );
     `);
+    // Ensure legacy column is removed if present
+    try {
+      await pool.query(`ALTER TABLE notes DROP COLUMN IF EXISTS text_size`);
+      console.log("Dropped legacy column text_size if it existed");
+    } catch (err) {
+      console.error("Error ensuring text_size removal:", err.message);
+    }
     console.log("Notes table created or already exists");
   } catch (err) {
     console.error("Error creating table:", err.message);
