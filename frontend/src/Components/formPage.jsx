@@ -1,7 +1,6 @@
 import React from 'react'
 import { useState } from 'react'
 import axios from 'axios'
-import ColorSelector from '../store/colorSelector'
 
 function FormPage() {
   const [formData, setFormData] = useState({title:"", content:"", bg_color:"#ffffff", text_color:"#000000"})
@@ -27,28 +26,26 @@ function FormPage() {
       <form className='flex flex-row flex-1 gap-10 m-10' onSubmit={handelForm}>
         <div className='flex flex-col w-3/4 mb-12 ml-12 border-4 border-gray-600 bg-gray-200 rounded-md py-2 px-6 '>
           <input className='h-20 border-2 border-gray-700 bg-transparent focus:outline-none border-none placeholder:text-gray-700 text-7xl font-extrabold px-5 pt-5 mb-10' placeholder='Title...' type='text' value={formData.title} onChange={(e) => setFormData({...formData,title:e.target.value})}/>
-          <textarea className='flex-1 border-2 border-gray-700 bg-transparent focus:outline-none border-none placeholder:text-gray-500 text-3xl placeholder:zfont-extrabold px-5 pb-5' placeholder='Enter a text...' value={formData.content} onChange={(e) => setFormData({...formData,content:e.target.value})}/>
+          <textarea className='flex-1 border-2 border-gray-700 bg-transparent focus:outline-none border-none placeholder:text-gray-500 text-3xl placeholder:zfont-extrabold px-5 pb-5' placeholder='Enter a text...' type='text' value={formData.content} onChange={(e) => setFormData({...formData,content:e.target.value})}/>
         </div>
-
         <div className=' flex flex-col gap-8 items-center justify-center w-1/4 mb-12 mr-12 border-4 border-gray-600 bg-gray-400 rounded-md py-2 px-6 '>
-          
+         <div className='flex flex-row items-center gap-24 border-4 border-white bg-gray-300 rounded-xl text-3xl font-extrabold text-gray-600 px-8 py-3'>
           <ColorSelector 
-            label="Bg color" 
-            gapClass="gap-24"
-            selectedColor={formData.bg_color} 
-            onSelectColor={(color) => setFormData({...formData, bg_color: color})} 
+            label="Bg color"
+            selectedColor = {formData.bg_color}
+            onSelect= {(color) => setFormData({... formData,bg_color: color})}
           />
-
+         </div>
+         <div className='flex flex-row items-center gap-16 border-4 border-white bg-gray-300 rounded-xl text-3xl font-extrabold text-gray-600 px-8 py-3'>
           <ColorSelector 
-            label="Text color" 
-            gapClass="gap-16"
-            selectedColor={formData.text_color} 
-            onSelectColor={(color) => setFormData({...formData, text_color: color})} 
+            label="Text color"
+            selectedColor = {formData.text_color_color}
+            onSelect= {(color) => setFormData({... formData,text_color_color: color})}
           />
-
+         </div>
           <button type='submit' className='border-4 border-yellow-600 bg-yellow-200 text-yellow-600 font-extrabold text-2xl rounded-xl px-32 py-3 mt-12'>Confirm</button>
         </div>
-      </form>
+      </form>x
     
     </div>
   )
