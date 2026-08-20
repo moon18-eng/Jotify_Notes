@@ -1,6 +1,7 @@
 import React from 'react'
 import { useState } from 'react'
 import axios from 'axios'
+import ColorSelector from '../store/colorSelector'
 
 function FormPage() {
   const [formData, setFormData] = useState({title:"", content:"", bg_color:"#ffffff", text_color:"#000000"})
@@ -39,13 +40,13 @@ function FormPage() {
          <div className='flex flex-row items-center gap-16 border-4 border-white bg-gray-300 rounded-xl text-3xl font-extrabold text-gray-600 px-8 py-3'>
           <ColorSelector 
             label="Text color"
-            selectedColor = {formData.text_color_color}
-            onSelect= {(color) => setFormData({... formData,text_color_color: color})}
+            selectedColor = {formData.text_color}
+            onSelect= {(color) => setFormData({... formData,text_color: color})}
           />
          </div>
           <button type='submit' className='border-4 border-yellow-600 bg-yellow-200 text-yellow-600 font-extrabold text-2xl rounded-xl px-32 py-3 mt-12'>Confirm</button>
         </div>
-      </form>x
+      </form>
     
     </div>
   )
