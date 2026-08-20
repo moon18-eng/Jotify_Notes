@@ -30,20 +30,16 @@ function FormPage() {
           <textarea className='flex-1 border-2 border-gray-700 bg-transparent focus:outline-none border-none placeholder:text-gray-500 text-3xl placeholder:zfont-extrabold px-5 pb-5' placeholder='Enter a text...' type='text' value={formData.content} onChange={(e) => setFormData({...formData,content:e.target.value})}/>
         </div>
         <div className=' flex flex-col gap-8 items-center justify-center w-1/4 mb-12 mr-12 border-4 border-gray-600 bg-gray-400 rounded-md py-2 px-6 '>
-         <div className='flex flex-row items-center gap-24 border-4 border-white bg-gray-300 rounded-xl text-3xl font-extrabold text-gray-600 px-8 py-3'>
           <ColorSelector 
             label="Bg color"
             selectedColor = {formData.bg_color}
             onSelect= {(color) => setFormData({... formData,bg_color: color})}
           />
-         </div>
-         <div className='flex flex-row items-center gap-16 border-4 border-white bg-gray-300 rounded-xl text-3xl font-extrabold text-gray-600 px-8 py-3'>
           <ColorSelector 
             label="Text color"
             selectedColor = {formData.text_color}
             onSelect= {(color) => setFormData({... formData,text_color: color})}
           />
-         </div>
           <button type='submit' className='border-4 border-yellow-600 bg-yellow-200 text-yellow-600 font-extrabold text-2xl rounded-xl px-32 py-3 mt-12'>Confirm</button>
         </div>
       </form>

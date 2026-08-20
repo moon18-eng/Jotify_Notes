@@ -1,46 +1,43 @@
-import React, { useState } from 'react'
+import React from "react";
+import { useState } from "react";
 
-function ColorSelector({ label, selectedColor, onSelectColor, gapClass }) {
-  const [isOpen, setIsOpen] = useState(false)
+function ColorSelector({label, selectedColor, onSelect}) {
 
-  const presetColors = [
-    "#ffffff", "#fef08a", "#bbf7d0", "#bfdbfe",
-    "#fbcfe8", "#e9d5ff", "#fca5a5", "#000000"
-  ]
+    const colors = [
+      "#ffffff", "#fef08a", "#bbf7d0", "#bfdbfe",
+      "#fbcfe8", "#e9d5ff", "#fca5a5", "#000000"
+    ]
+    const [isOpen, setIsOpen] = useState(false)
 
-  return (
-    <div className={`relative flex flex-row items-center ${gapClass} border-4 border-white bg-gray-300 rounded-xl text-3xl font-extrabold text-gray-600 px-8 py-3`}>
-      <p>{label}</p>
-      
-      {/* Active Color Button */}
-      <button 
-        type="button" 
-        onClick={() => setIsOpen(!isOpen)} 
-        className="h-16 w-20 border-2 border-white rounded cursor-pointer shadow-md" 
-        style={{ backgroundColor: selectedColor }}
-      />
 
-      {/* Handmade Palette Window */}
-      {isOpen && (
-        <div className="absolute right-0 top-24 p-3 bg-gray-300 border-4 border-white rounded-xl shadow-2xl z-20 grid grid-cols-4 gap-3">
-          {presetColors.map((color) => (
-            <button
-              key={color}
-              type="button"
-              className={`w-10 h-10 rounded border-2 border-white cursor-pointer transition-transform hover:scale-110 ${
-                selectedColor === color ? 'ring-4 ring-black' : ''
-              }`}
-              style={{ backgroundColor: color }}
-              onClick={() => {
-                onSelectColor(color)
-                setIsOpen(false)
-              }}
-            />
-          ))}
+    return(
+        <>
+        <div className="relative flex flex-row gap-10 justify-center items-center border-4 border-white bg-gray-300 h-24 w-4/5  rounded-xl"
+        >
+            <h1 className="font-extrabold text-gray-600 text-3xl">{label}</h1>
+            <div className="relative">
+                <div 
+                className=" border-4 border-white w-14 h-14 rounded-lg cursor-pointer"
+                style={{backgroundColor: selectedColor}}
+                onClick={() => setIsOpen(!isOpen)}
+                />
+                
+                {isOpen && 
+                <div 
+                className='absolute bottom-full mb-2 left-1/2 -translate-x-1/3  border-4 border-white bg-gray-300 cursor-pointer rounded-xl grid lg:grid-cols-4 content-start gap-3 p-4 w-max'
+                >
+                    {colors.map((color) => 
+                        <div 
+                        onClick={() => onSelect(color)} 
+                        className="border-2 border-white w-11 h-11 rounded-lg" 
+                        style={{backgroundColor: color}}>
+                        </div>
+                    )}
+                </div>}
+            </div>
         </div>
-      )}
-    </div>
-  )
+        </>
+    )
 }
 
 export default ColorSelector
