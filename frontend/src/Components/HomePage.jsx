@@ -1,4 +1,5 @@
-import{useEffect, useState } from "react";
+import{useEffect, useState} from "react";
+import {useNavigate} from "react-router-dom";
 import axios from "axios";
 
 function HomePage(){
@@ -7,6 +8,7 @@ function HomePage(){
     const [notes,setNotes] = useState([]);
     const [loading,setLoading] = useState(true);
     const [error,setError] = useState(null);
+    const nav = useNavigate();
     
     const fetchNotes = async() => {
         try {
@@ -29,14 +31,14 @@ function HomePage(){
         <div className="flex-1 min-h-0 flex flex-col gap-6 px-12 mt-8">
             <div className="flex flex-row justify-between items-center">
                 <button 
-                    className="w-fit border-2 border-black bg-gray-400 rounded-md py-2 px-6 font-extrabold text-xl"
-                    // onClick={change to /FormPage}
+                    className="w-fit border-4 border-black bg-gray-400 rounded-xl py-2 px-6 font-extrabold text-2xl"
+                    onClick={() => nav('/noteForm')}
                     >
                     CREATE +
                 </button>
 
                 <button 
-                    className="w-fit border-2 border-black bg-gray-300 rounded-md py-2 px-6 font-extrabold text-xl"
+                    className="w-fit border-4 border-black bg-gray-400 rounded-xl py-2 px-6 font-extrabold text-xl"
                     onClick={fetchNotes}>
                     🗘
                 </button>
@@ -48,14 +50,18 @@ function HomePage(){
                 {!error && !loading && notes.length == 0 && <p>No notes yet ...</p>}
                 {!error && !loading && 
                 notes.map((note) => 
-                    <div style={{ 
-                            backgroundColor: note.bg_color || '#ffffff', 
-                            color: note.text_color || '#000000',
-                            fontSize: '16px' 
-                            }}
-                         className="flex flex-col border-2 border-gray-800  h-64 rounded-xl ">
-                         <h1 className="ml-2 mt-2 text-2xl font-bold">{note.title}</h1>
-                         <p className="m-2 text-gray-700 line-clamp-[8] break-words">{note.content}</p>
+                    <div 
+                    key={note.id}
+                    style={{ 
+                     backgroundColor: note.bg_color || '#ffffff', 
+                     color: note.text_color || '#000000',
+                     fontSize: '18px' 
+                    }}
+                    className="flex flex-col border-2 border-gray-800  h-64 rounded-xl p-3 cursor-pointer"
+                    onClick={() => nav(`/note/:${note.id}`)}
+                    >
+                        <h1 className="ml-2 mt-2 text-3xl font-bold">{note.title}</h1>
+                        <p className="m-2  line-clamp-[8] break-words">{note.content}</p>
                     </div>
                 )}
              </div>
