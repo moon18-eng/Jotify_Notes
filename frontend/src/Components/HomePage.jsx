@@ -6,7 +6,7 @@ function HomePage(){
 
     const BASE_URL = "http://localhost:5000"
     const [notes,setNotes] = useState([]);
-    const [loading,setLoading] = useState(true);
+    const [loading,setLoading] = useState(null);
     const [error,setError] = useState(null);
     const nav = useNavigate();
     
@@ -15,7 +15,6 @@ function HomePage(){
             setLoading(true);
             const respond = await axios.get(`${BASE_URL}/notes`);
             setNotes(respond.data.data);
-            setError(null);
         } catch (err) {
             setError("something went wrong");
         } finally{
@@ -58,10 +57,10 @@ function HomePage(){
                      fontSize: '18px' 
                     }}
                     className="flex flex-col border-2 border-gray-800  h-64 rounded-xl p-3 cursor-pointer"
-                    onClick={() => nav(`/note/:${note.id}`)}
+                    onClick={() => nav(`/note/${note.id}`)}
                     >
                         <h1 className="ml-2 mt-2 text-3xl font-bold">{note.title}</h1>
-                        <p className="m-2  line-clamp-[8] break-words">{note.content}</p>
+                        <p className="m-2 line-clamp-[8] break-words">{note.content}</p>
                     </div>
                 )}
              </div>
