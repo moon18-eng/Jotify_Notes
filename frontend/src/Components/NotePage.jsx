@@ -11,6 +11,7 @@ function NotePage(){
     const [loading,setLoading] = useState(null);
     const params = useParams() ;
     const id = params.id;
+
     const fetchNote = async() => {
      try{ 
         setLoading(true);
@@ -24,8 +25,19 @@ function NotePage(){
     }}
 
     useEffect(()=>{
-        fetchNote()},[])
+        fetchNote()},[]
+    )
 
+    const deleteNote = async() => {
+        try{
+            await axios.delete(`${BASE_URL}/notes/${id}`)
+            nav("/")
+            console.log("note deleted")
+
+        }catch (err){
+            setError("somthing went wrong");
+        }
+    }
 
     return (
         <div className='flex-1 flex flex-col '>
@@ -38,7 +50,10 @@ function NotePage(){
 
             <div className='flex flex-row flex-1 gap-10 m-24 mt-14 border-4 border-gray-600 bg-gray-200' >
                 
-                <div className="flex flex-col flex-1 border-4 border-black bg-blue-200 mx-12 mt-16 min-w-0 max-h-[500px] overflow-y-auto [scrollbar-width:none]">
+                <div 
+                className="flex flex-col flex-1 border-4 border-black mx-12 mt-16 min-w-0 max-h-[500px] overflow-y-auto [scrollbar-width:none]"
+                style={{background:note.bg_color}}
+                >
                     {loading && <p>Loading...</p> }
                     {error && <p>{error}</p>}
                     {!loading && !error &&
@@ -63,6 +78,7 @@ function NotePage(){
                     </button> 
                     <button 
                     className=' h-fit border-4 border-red-700 bg-red-300 rounded-xl py-3 px-24 font-extrabold text-3xl text-red-700'
+                    onClick={() => deleteNote()}
                     >
                     DELETE
                     </button> 

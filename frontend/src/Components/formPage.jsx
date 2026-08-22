@@ -34,10 +34,11 @@ function FormPage() {
         className='flex flex-col w-3/4 mb-12 ml-12 border-4 border-gray-600 rounded-md py-2 px-6 '
         style={{background: formData.bg_color}}
         >
-          <input 
-          className=' h-20 border-2 border-gray-700 bg-transparent focus:outline-none border-none placeholder:[color:var(--text-color)] text-7xl font-extrabold px-5 pt-5 mb-10' 
+          <input
+          className=' h-28 border-2 border-gray-700 bg-transparent focus:outline-none border-none placeholder:[color:var(--text-color)] text-7xl font-extrabold px-5 pt-5' 
           placeholder='Title...' 
           type='text' 
+          maxLength={24}
           value={formData.title} 
           onChange={(e) => setFormData({...formData,title:e.target.value})}
           style={{
