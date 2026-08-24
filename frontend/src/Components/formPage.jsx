@@ -1,13 +1,16 @@
 import React from 'react'
-import { useState } from 'react'
+import { useState, useEffect} from 'react'
 import axios from 'axios'
 import ColorSelector from '../store/colorSelector'
-import { useNavigate } from 'react-router-dom'
+import { useNavigat, useParams  } from 'react-router-dom'
+import {fetchNote } from './NotePage'
 
 function FormPage() {
   const [formData, setFormData] = useState({title:"", content:"", bg_color:"#ffffff", text_color:"#000000"})
   const BASE_URL = "http://localhost:5000"
   const nav = useNavigate();
+  const params = useParams();
+  const cu = params.id; 
 
   const handelForm = async(e)=>{
     e.preventDefault();
@@ -20,6 +23,11 @@ function FormPage() {
     }
   }
 
+  useEffect(
+  () => {fetchNote()}
+  ,[])
+
+
   return (
     <div className='flex-1 flex flex-col  '>
       <button 
@@ -29,7 +37,7 @@ function FormPage() {
        ◄  Cancel
       </button>
 
-      <form className='flex flex-row flex-1 gap-10 m-10 mt-14' onSubmit={handelForm}>
+      {<form className='flex flex-row flex-1 gap-10 m-10 mt-14' onSubmit={handelForm}>
         <div 
         className='flex flex-col w-3/4 mb-12 ml-12 border-4 border-gray-600 rounded-md py-2 px-6 '
         style={{background: formData.bg_color}}
@@ -73,7 +81,7 @@ function FormPage() {
           className='border-4 border-yellow-600 bg-yellow-200 text-yellow-600 font-extrabold text-2xl rounded-xl px-32 py-3 mt-12'
           >Confirm</button>
         </div>
-      </form>
+      </form>}
     
     </div>
   )

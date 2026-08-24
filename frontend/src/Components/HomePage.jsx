@@ -31,7 +31,7 @@ function HomePage(){
             <div className="flex flex-row justify-between items-center">
                 <button 
                     className="w-fit border-4 border-black bg-gray-400 rounded-xl py-2 px-6 font-extrabold text-2xl"
-                    onClick={() => nav('/noteForm')}
+                    onClick={() => nav('/noteForm/0')}
                     >
                     CREATE +
                 </button>
