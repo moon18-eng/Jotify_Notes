@@ -2,26 +2,45 @@ import React from 'react'
 import { useState, useEffect} from 'react'
 import axios from 'axios'
 import ColorSelector from '../store/colorSelector'
-import { useNavigat, useParams  } from 'react-router-dom'
-import {fetchNote } from './NotePage'
+import { useNavigate  , useParams  } from 'react-router-dom'
 
 function FormPage() {
   const [formData, setFormData] = useState({title:"", content:"", bg_color:"#ffffff", text_color:"#000000"})
   const BASE_URL = "http://localhost:5000"
   const nav = useNavigate();
+  const [error,setError] = useState(null);
+  const [loading,setLoading] = useState(null);
   const params = useParams();
-  const cu = params.id; 
+  const id = params.id; 
+
 
   const handelForm = async(e)=>{
     e.preventDefault();
     console.log("Sending Payload:", formData);
     try {
-      await axios.post(`${BASE_URL}/notes`,formData)
+      if(id == "0"){ 
+        await axios.post(`${BASE_URL}/notes`,formData)
+      }else{
+        await axios.put(`${BASE_URL}/notes/${id}`,formData) 
+      }
       setFormData({title:"", content:"", bg_color:"#ffffff", text_color:"#000000"})
     } catch (error) {
       console.error(JSON.stringify(error.response?.data || error.message || error, null, 2));
     }
   }
+
+  const fetchNote = async() => {
+     try{ 
+        setLoading(true);
+        const res = await axios.get(`${BASE_URL}/notes/${id}`);
+        setFormData(res.data.data);
+        
+    } catch (err){
+        setError("somthing went wrong");
+    }finally{
+        setLoading(false);
+    }}
+
 
   useEffect(
   () => {fetchNote()}
@@ -29,7 +48,7 @@ function FormPage() {
 
 
   return (
-    <div className='flex-1 flex flex-col  '>
+    <div className='flex-1 flex flex-col'>
       <button 
       className='flex items-start ml-12 mt-8 w-fit border-4 border-black bg-gray-400 rounded-xl py-2 px-6 font-extrabold text-2xl'
       onClick={() => nav('/')}

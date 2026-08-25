@@ -12,8 +12,8 @@ function App() {
       <Navbar/>
       <Routes>
         <Route path="/" element={<HomePage />} />
+        <Route path="/noteForm/:id" element={<FormPage />}/>
         <Route path="/note/:id" element={<NotePage />} />
-        <Route path="/noteForm" element={<FormPage />}/>
       </Routes>
     </div>
      

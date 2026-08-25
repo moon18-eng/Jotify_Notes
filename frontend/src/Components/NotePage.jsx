@@ -11,6 +11,7 @@ function NotePage(){
     const [loading,setLoading] = useState(null);
     const params = useParams() ;
     const id = params.id;
+    const pinStatus = true
 
     const fetchNote = async() => {
      try{ 
@@ -39,8 +40,16 @@ function NotePage(){
         }
     }
 
+    const handelPin = async() => {
+        try{
+            await axios.patch(`${BASE_URL}/notes/${id}/pin`, {is_pinned : pinStatus})
+            console.log("note pinned")
+        }catch(error){
+            setError("Somthing went wrong")
+        }}
+
     return (
-        <div className='flex-1 flex flex-col '>
+        <div className='flex-1 flex flex-col'>
             <button 
             className='flex items-start ml-12 mt-8 w-fit border-4 border-black bg-gray-400 rounded-xl py-2 px-6 font-extrabold text-2xl'
             onClick={() => nav('/')}
@@ -68,13 +77,15 @@ function NotePage(){
                 <div className="flex flex-col items-center justify-center gap-10 w-1/5 mr-20">
                    <button 
                     className=' h-fit border-4 border-black bg-gray-400 rounded-xl py-3 px-28 font-extrabold text-3xl'
+                    onClick={() => nav(`/noteForm/${id}`)}
                     >
                     EDIT
                     </button> 
                     <button 
                     className=' h-fit border-4 border-black bg-gray-400 rounded-xl py-3 px-24 font-extrabold text-3xl'
-                    >
-                   📌 PIN 
+                    onClick={() => handelPin()}
+                   >
+                    { (p) && <p>📌 PIN</p>} 
                     </button> 
                     <button 
                     className=' h-fit border-4 border-red-700 bg-red-300 rounded-xl py-3 px-24 font-extrabold text-3xl text-red-700'
