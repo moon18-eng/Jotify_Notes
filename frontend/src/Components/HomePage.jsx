@@ -1,6 +1,7 @@
 import{useEffect, useState} from "react";
 import {useNavigate} from "react-router-dom";
 import axios from "axios";
+import pinIcon from "../assets/clip.png"
 
 function HomePage(){
 
@@ -59,7 +60,10 @@ function HomePage(){
                     className="flex flex-col border-2 border-gray-800  h-64 rounded-xl p-3 cursor-pointer"
                     onClick={() => nav(`/note/${note.id}`)}
                     >
+                     <div className="flex flex-row justify-between">
                         <h1 className="ml-2 mt-2 text-3xl font-bold">{note.title}</h1>
+                        {(note.is_pinned) && <img src={pinIcon} className="w-10 h-10 "></img>}
+                    </div>
                         <p className="m-2 line-clamp-[8] break-words">{note.content}</p>
                     </div>
                 )}

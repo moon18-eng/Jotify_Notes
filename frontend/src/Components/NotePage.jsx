@@ -11,7 +11,6 @@ function NotePage(){
     const [loading,setLoading] = useState(null);
     const params = useParams() ;
     const id = params.id;
-    const pinStatus = true
 
     const fetchNote = async() => {
      try{ 
@@ -42,8 +41,9 @@ function NotePage(){
 
     const handelPin = async() => {
         try{
-            await axios.patch(`${BASE_URL}/notes/${id}/pin`, {is_pinned : pinStatus})
-            console.log("note pinned")
+            const res = await axios.patch(`${BASE_URL}/notes/${id}/pin`, {is_pinned : !note.is_pinned})
+            setNote(res.data.data)
+            console.log("success!")
         }catch(error){
             setError("Somthing went wrong")
         }}
@@ -85,7 +85,8 @@ function NotePage(){
                     className=' h-fit border-4 border-black bg-gray-400 rounded-xl py-3 px-24 font-extrabold text-3xl'
                     onClick={() => handelPin()}
                    >
-                    { (p) && <p>📌 PIN</p>} 
+                    { (!note.is_pinned) && <p>📌 PIN</p>} 
+                    {(note.is_pinned)&& <p> UNPIN</p>}
                     </button> 
                     <button 
                     className=' h-fit border-4 border-red-700 bg-red-300 rounded-xl py-3 px-24 font-extrabold text-3xl text-red-700'

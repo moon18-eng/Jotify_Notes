@@ -2,7 +2,7 @@ import pool from "../config/db.js";
 
 export const getNotes = async (req, res) => {
   try {
-    const result = await pool.query("SELECT * FROM notes ORDER BY id DESC");
+    const result = await pool.query("SELECT * FROM notes ORDER BY is_pinned DESC, id DESC");
     if (result.rows.length === 0) {
       return res.status(404).json({ success: false, message: "Notes not found" });
     }
