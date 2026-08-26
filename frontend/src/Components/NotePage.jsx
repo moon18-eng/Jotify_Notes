@@ -2,6 +2,8 @@ import React from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useState,useEffect } from "react";
 import axios from "axios";
+import notFoundIcon from "../assets/404-error.png";
+
 
 function NotePage(){
     const BASE_URL = "http://localhost:5000"
@@ -19,7 +21,7 @@ function NotePage(){
         setNote(res.data.data);
         console.log(res.data.data)
     } catch (err){
-        setError("somthing went wrong");
+        setError("Id does not exist!");
     }finally{
         setLoading(false);
     }}
@@ -56,19 +58,34 @@ function NotePage(){
             >
             ◄  Cancel
             </button>
+            {error && 
+                <div className="mb-20 flex flex-col h-full items-center justify-center "> 
+                <img src={notFoundIcon} className="w-80"/> 
+                <p className="text-3xl font-extrabold">{error}</p>
+                </div>
+            }
 
-            <div className='flex flex-row flex-1 gap-10 m-24 mt-14 border-4 border-gray-600 bg-gray-200' >
+            { !error && <div className='flex flex-row flex-1 gap-10 m-24 mt-14 border-4 border-gray-600 bg-gray-200' >
                 
                 <div 
                 className="flex flex-col flex-1 border-4 border-black mx-12 mt-16 min-w-0 max-h-[500px] overflow-y-auto [scrollbar-width:none]"
                 style={{background:note.bg_color}}
                 >
                     {loading && <p>Loading...</p> }
-                    {error && <p>{error}</p>}
                     {!loading && !error &&
                     <>
-                    <h1 className="text-5xl font-extrabold px-6 pt-5 mb-5">{note.title}</h1>
-                    <p className="text-2xl px-6 pb-5 break-all whitespace-pre-wrap">{note.content}</p>
+                    <h1 
+                    className="text-5xl font-extrabold px-6 pt-5 mb-5"
+                    style={{color:note.text_color}}
+                    >
+                        {note.title}
+                    </h1>
+                    <p 
+                    className="text-2xl px-6 pb-5 break-all whitespace-pre-wrap"
+                    style={{color:note.text_color}}
+                    >
+                        {note.content}
+                    </p>
                     </>
                     
                     }
@@ -96,7 +113,7 @@ function NotePage(){
                     </button> 
                 </div>
                 
-            </div>
+            </div>}
         
         </div>
   )

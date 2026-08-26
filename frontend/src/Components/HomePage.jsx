@@ -1,7 +1,9 @@
 import{useEffect, useState} from "react";
 import {useNavigate} from "react-router-dom";
 import axios from "axios";
-import pinIcon from "../assets/clip.png"
+import pinIcon from "../assets/clip.png";
+import notFoundIcon from "../assets/404-error.png";
+
 
 function HomePage(){
 
@@ -17,7 +19,7 @@ function HomePage(){
             const respond = await axios.get(`${BASE_URL}/notes`);
             setNotes(respond.data.data);
         } catch (err) {
-            setError("something went wrong");
+            setError("Somthing went wrong...");
         } finally{
             setLoading(false);
         }
@@ -28,6 +30,7 @@ function HomePage(){
    },[]);
 
     return(
+        
         <div className="flex-1 min-h-0 flex flex-col gap-6 px-12 mt-8">
             <div className="flex flex-row justify-between items-center">
                 <button 
@@ -44,9 +47,56 @@ function HomePage(){
                 </button>
             </div>
 
-             <div className="flex-1  overflow-y-auto mb-6 p-8 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-12 content-start [scrollbar-width:none] ">
-                {loading && <p className="text-3xl" >loading...</p>}
-                {error && <p className="text-3xl text-red-700">{error}</p>}
+            {error && 
+                <div className="flex flex-col h-full items-center justify-center "> 
+                <img src={notFoundIcon} className="w-80"/> 
+                <p className="text-3xl font-extrabold">{error}</p>
+                </div>
+            }
+
+            {!error && (notes.length == 0) && 
+                <div className="flex flex-col h-full items-center justify-center "> 
+                <img src={notFoundIcon} className="w-80"/> 
+                <p className="text-3xl font-extrabold">There is no notes!</p>
+                </div>
+            }
+
+
+            <div className="flex-1  overflow-y-auto mb-6 p-8 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-12 content-start [scrollbar-width:none] ">
+                {loading && 
+                <>
+                    <div 
+                    className="flex flex-col border-2 border-slate-300  h-64 rounded-xl p-3 cursor-pointer bg-slate-300 animate-pulse"
+                    />  
+                     <div 
+                    className="flex flex-col border-2 border-slate-300  h-64 rounded-xl p-3 cursor-pointer bg-slate-300 animate-pulse"
+                    />  
+                     <div 
+                    className="flex flex-col border-2 border-slate-300  h-64 rounded-xl p-3 cursor-pointer bg-slate-300 animate-pulse"
+                    />  
+                     <div 
+                    className="flex flex-col border-2 border-slate-300  h-64 rounded-xl p-3 cursor-pointer bg-slate-300 animate-pulse"
+                    />  
+                     <div 
+                    className="flex flex-col border-2 border-slate-300  h-64 rounded-xl p-3 cursor-pointer bg-slate-300 animate-pulse"
+                    />  
+                     <div 
+                    className="flex flex-col border-2 border-slate-300  h-64 rounded-xl p-3 cursor-pointer bg-slate-300 animate-pulse"
+                    />  
+                     <div 
+                    className="flex flex-col border-2 border-slate-300  h-64 rounded-xl p-3 cursor-pointer bg-slate-300 animate-pulse"
+                    />  
+                     <div 
+                    className="flex flex-col border-2 border-slate-300  h-64 rounded-xl p-3 cursor-pointer bg-slate-300 animate-pulse"
+                    />  
+                     <div 
+                    className="flex flex-col border-2 border-slate-300  h-64 rounded-xl p-3 cursor-pointer bg-slate-300 animate-pulse"
+                    />  
+                </>
+                    
+                }
+
+                
                 {!error && !loading && notes.length == 0 && <p>No notes yet ...</p>}
                 {!error && !loading && 
                 notes.map((note) => 
@@ -62,9 +112,14 @@ function HomePage(){
                     >
                      <div className="flex flex-row justify-between">
                         <h1 className="ml-2 mt-2 text-3xl font-bold">{note.title}</h1>
-                        {(note.is_pinned) && <img src={pinIcon} className="w-10 h-10 "></img>}
-                    </div>
-                        <p className="m-2 line-clamp-[8] break-words">{note.content}</p>
+                        {(note.is_pinned) && 
+                        <img 
+                        src={pinIcon} 
+                        className="w-10 h-10 bg-zinc-700/70 rounded-lg "             
+                        />
+                        }
+                     </div>
+                        <p className="m-2 line-clamp-[8] break-all whitespace-pre-wrap ">{note.content}</p>
                     </div>
                 )}
              </div>
