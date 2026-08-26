@@ -34,7 +34,6 @@ function NotePage(){
         try{
             await axios.delete(`${BASE_URL}/notes/${id}`)
             nav("/")
-            console.log("note deleted")
 
         }catch (err){
             setError("somthing went wrong");
@@ -65,13 +64,25 @@ function NotePage(){
                 </div>
             }
 
-            { !error && <div className='flex flex-row flex-1 gap-10 m-24 mt-14 border-4 border-gray-600 bg-gray-200' >
+            {!error && <div className='flex flex-row flex-1 gap-10 m-24 mt-14 border-4 border-gray-600 bg-gray-200' >
                 
                 <div 
                 className="flex flex-col flex-1 border-4 border-black mx-12 mt-16 min-w-0 max-h-[500px] overflow-y-auto [scrollbar-width:none]"
                 style={{background:note.bg_color}}
                 >
-                    {loading && <p>Loading...</p> }
+                    {loading && (
+                    <div className="flex flex-col gap-6 px-6 pt-9 animate-pulse">
+                        <div className="h-12 bg-slate-300 rounded-xl w-2/3 mb-2" />       
+                        <div className="flex flex-col gap-5">
+                            <div className="h-8 bg-slate-300 rounded-xl w-full" />
+                            <div className="h-8 bg-slate-300 rounded-xl w-fufull" />
+                            <div className="h-8 bg-slate-300 rounded-xl w-full" />
+                            <div className="h-8 bg-slate-300 rounded-xl w-full" />
+                            <div className="h-8 bg-slate-300 rounded-xl w-1/2" />
+                        </div>
+                    </div>
+                    )}
+
                     {!loading && !error &&
                     <>
                     <h1 
@@ -86,8 +97,7 @@ function NotePage(){
                     >
                         {note.content}
                     </p>
-                    </>
-                    
+                    </> 
                     }
                 </div>
 

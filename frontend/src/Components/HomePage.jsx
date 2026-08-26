@@ -47,19 +47,20 @@ function HomePage(){
                 </button>
             </div>
 
-            {error && 
+            {!loading && !error && (notes.length == 0) && 
+                <div className="flex flex-col h-full items-center justify-center "> 
+                <img src={notFoundIcon} className="w-80"/> 
+                <p className="text-3xl font-extrabold">There is no notes!</p>
+                </div>
+            }
+
+            {error && !loading &&  
                 <div className="flex flex-col h-full items-center justify-center "> 
                 <img src={notFoundIcon} className="w-80"/> 
                 <p className="text-3xl font-extrabold">{error}</p>
                 </div>
             }
 
-            {!error && (notes.length == 0) && 
-                <div className="flex flex-col h-full items-center justify-center "> 
-                <img src={notFoundIcon} className="w-80"/> 
-                <p className="text-3xl font-extrabold">There is no notes!</p>
-                </div>
-            }
 
 
             <div className="flex-1  overflow-y-auto mb-6 p-8 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-12 content-start [scrollbar-width:none] ">

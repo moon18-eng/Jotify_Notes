@@ -26,8 +26,9 @@ function FormPage() {
         await axios.put(`${BASE_URL}/notes/${id}`,formData) 
       }
       setFormData({title:"", content:"", bg_color:"#ffffff", text_color:"#000000"})
+      nav('/')
     } catch (error) {
-      console.error(JSON.stringify(error.response?.data || error.message || error, null, 2));
+      console.log(error);
     }
   }
 
@@ -46,14 +47,11 @@ function FormPage() {
     }}
 
 
+
   useEffect(
   () => {fetchNote()}
   ,[])
 
-  const handelNav = () => {
-    fetchNote()
-    nav('/')
-  }
 
   return (
     <div className='flex-1 flex flex-col'>
@@ -112,7 +110,6 @@ function FormPage() {
           />
           <button 
           type='submit' 
-          onClick={handelNav}
           className='border-4 border-yellow-600 bg-yellow-200 text-yellow-600 font-extrabold text-2xl rounded-xl px-32 py-3 mt-12'
           >Confirm</button>
         </div>
