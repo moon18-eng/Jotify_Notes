@@ -9,7 +9,7 @@ function HomePage(){
 
     const BASE_URL = "http://localhost:5000"
     const [notes,setNotes] = useState([]);
-    const [loading,setLoading] = useState(null);
+    const [loading,setLoading] = useState(true);
     const [error,setError] = useState(null);
     const nav = useNavigate();
     
