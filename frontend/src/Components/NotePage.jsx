@@ -50,7 +50,7 @@ function NotePage(){
         }}
 
     return (
-        <div className='flex-1 flex flex-col'>
+        <div className='flex-1 flex flex-col px-8'>
             <button 
             className='flex items-start ml-12 mt-8 w-fit border-4 border-black bg-gray-400 rounded-xl py-2 px-6 font-extrabold text-2xl'
             onClick={() => nav('/')}

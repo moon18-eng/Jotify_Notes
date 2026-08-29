@@ -31,7 +31,7 @@ function HomePage(){
 
     return(
         
-        <div className="flex-1 min-h-0 flex flex-col gap-6 px-12 mt-8">
+        <div className="flex-1 min-h-0 flex flex-col gap-6 px-20 mt-8">
             <div className="flex flex-row justify-between items-center">
                 <button 
                     className="w-fit border-4 border-black bg-gray-400 rounded-xl py-2 px-6 font-extrabold text-2xl"
@@ -96,9 +96,7 @@ function HomePage(){
                 </>
                     
                 }
-
-                
-                {!error && !loading && notes.length == 0 && <p>No notes yet ...</p>}
+               
                 {!error && !loading && 
                 notes.map((note) => 
                     <div 

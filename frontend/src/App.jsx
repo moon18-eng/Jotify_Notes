@@ -4,9 +4,9 @@ import Navbar from "./Components/Navbar";
 import NotePage from "./Components/NotePage";
 import HomePage from "./Components/HomePage";
 import FormPage from "./Components/formPage";
-import bg from "../src/assets/ikhlas-gJDvDw889RI-unsplash.jpg"
+import bg from "./assets/bgg.jpeg"
 import NotFoundPage from "./Components/NotFound";
-
+import LoginPage from "./Components/LoginPage";
 
 function App() {
   return (
@@ -17,6 +17,7 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/noteForm/:id" element={<FormPage />}/>
         <Route path="/note/:id" element={<NotePage />} />
+        <Route path="/login" element={<LoginPage/>}/>
         <Route path="*" element={<NotFoundPage/>}/>
       </Routes>
     </div>
