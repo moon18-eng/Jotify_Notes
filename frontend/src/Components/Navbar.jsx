@@ -1,8 +1,11 @@
 import React from "react";
 import settingsIcon from "../assets/settings.png"
 import calendarIcon from "../assets/calendar.png"
+import { useNavigate } from "react-router-dom";
 
 function Navbar(){
+    const nav = useNavigate()
+
 
     return(
         <div className="flex flex-row items-center justify-between pt-8 pb-3">
@@ -10,7 +13,12 @@ function Navbar(){
             <div className="flex flex-row items-center justify-center pr-20 gap-10">
                 <h1 className=" font-bold text-2xl text-gray-200">About</h1>
                 <h1 className=" font-bold text-2xl text-gray-200">Theme</h1>
-                <h1 className=" font-bold text-2xl text-gray-200 border-2 rounded-lg border-gray-200 px-7 py-2 hover:bg-white hover:text-gray-700 cursor-pointer">Login</h1>
+                <h1
+                className=" font-bold text-2xl text-gray-200 border-2 rounded-lg border-gray-200 px-7 py-2 hover:bg-white hover:text-gray-700 cursor-pointer"
+                onClick={()=> nav('/login')}
+                >
+                    Log in
+                </h1>
 
             </div>
         </div>

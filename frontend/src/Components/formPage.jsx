@@ -90,7 +90,8 @@ function FormPage() {
           className='flex-1 border-2 border-gray-700 bg-transparent focus:outline-none border-none placeholder:[color:var(--text-color)] text-3xl placeholder:zfont-extrabold px-5 pb-5' 
           placeholder='Enter a text...' 
           type='text' 
-          value={formData.content} onChange={(e) => setFormData({...formData,content:e.target.value})}
+          value={formData.content} 
+          onChange={(e) => setFormData({...formData,content:e.target.value})}
           style={{
             color:formData.text_color,
             '--text-color':formData.text_color

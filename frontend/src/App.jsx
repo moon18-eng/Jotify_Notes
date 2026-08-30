@@ -7,6 +7,7 @@ import FormPage from "./Components/formPage";
 import bg from "./assets/bgg.jpeg"
 import NotFoundPage from "./Components/NotFound";
 import LoginPage from "./Components/LoginPage";
+import SignupPage from "./Components/SignupPage";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <Route path="/noteForm/:id" element={<FormPage />}/>
         <Route path="/note/:id" element={<NotePage />} />
         <Route path="/login" element={<LoginPage/>}/>
+        <Route path="/signUp" element={<SignupPage/>}/>
         <Route path="*" element={<NotFoundPage/>}/>
       </Routes>
     </div>
