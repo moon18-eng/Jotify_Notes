@@ -1,9 +1,11 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 function SignupPage() {
 
     const nav = useNavigate()
+    const [signData,setsignData] = useState({display_name:"", username:"", password:"", confirm_password:""},)
     
     return(
         <div
