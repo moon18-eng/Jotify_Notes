@@ -3,6 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useState,useEffect } from "react";
 import axios from "axios";
 import notFoundIcon from "../assets/404-error.png";
+import API from "../api/axios";
 
 
 function NotePage(){
@@ -14,10 +15,15 @@ function NotePage(){
     const params = useParams() ;
     const id = params.id;
 
+    const token = localStorage.getItem("token");
+    if (!token) {
+      nav("/login");
+    }
+
     const fetchNote = async() => {
      try{ 
         setLoading(true);
-        const res = await axios.get(`${BASE_URL}/notes/${id}`);
+        const res = await API.get(`/notes/${id}`);
         setNote(res.data.data);
         console.log(res.data.data)
     } catch (err){
@@ -32,7 +38,7 @@ function NotePage(){
 
     const deleteNote = async() => {
         try{
-            await axios.delete(`${BASE_URL}/notes/${id}`)
+            await API.delete(`/notes/${id}`)
             nav("/")
 
         }catch (err){
@@ -42,7 +48,7 @@ function NotePage(){
 
     const handelPin = async() => {
         try{
-            const res = await axios.patch(`${BASE_URL}/notes/${id}/pin`, {is_pinned : !note.is_pinned})
+            const res = await API.patch(`/notes/${id}/pin`, {is_pinned : !note.is_pinned})
             setNote(res.data.data)
             console.log("success!")
         }catch(error){

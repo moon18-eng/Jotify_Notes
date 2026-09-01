@@ -4,7 +4,7 @@ import axios from 'axios'
 import ColorSelector from '../store/colorSelector'
 import { useNavigate  , useParams  } from 'react-router-dom'
 import notFoundIcon from "../assets/404-error.png";
-
+import API from "../api/axios";
 
 function FormPage() {
   const [formData, setFormData] = useState({title:"", content:"", bg_color:"#ffffff", text_color:"#000000"})
@@ -15,15 +15,19 @@ function FormPage() {
   const params = useParams();
   const id = params.id; 
 
+  const token = localStorage.getItem("token");
+  if (!token) {
+    nav("/login");
+  }
 
   const handelForm = async(e)=>{
     e.preventDefault();
     console.log("Sending Payload:", formData);
     try {
       if(id == "0"){ 
-        await axios.post(`${BASE_URL}/notes`,formData)
+        await API.post("/notes",formData)
       }else{
-        await axios.put(`${BASE_URL}/notes/${id}`,formData) 
+        await API.put(`/notes/${id}`,formData) 
       }
       setFormData({title:"", content:"", bg_color:"#ffffff", text_color:"#000000"})
       nav('/')
@@ -37,7 +41,7 @@ function FormPage() {
 
      try{ 
         setLoading(true);
-        const res = await axios.get(`${BASE_URL}/notes/${id}`);
+        const res = await API.get(`/notes/${id}`);
         setFormData(res.data.data);     
         
     } catch (err){
@@ -52,8 +56,12 @@ function FormPage() {
   () => {fetchNote()}
   ,[])
 
+  
+  
+
 
   return (
+    
     <div className='flex-1 flex flex-col px-8'>
       <button 
       className='flex items-start ml-12 mt-8 w-fit border-4 border-black bg-gray-400 rounded-xl py-2 px-6 font-extrabold text-2xl'

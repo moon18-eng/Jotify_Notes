@@ -1,6 +1,5 @@
 
 import { Routes, Route } from "react-router";
-import Navbar from "./Components/Navbar";
 import NotePage from "./Components/NotePage";
 import HomePage from "./Components/HomePage";
 import FormPage from "./Components/formPage";
@@ -8,6 +7,7 @@ import bg from "./assets/bgg.jpeg"
 import NotFoundPage from "./Components/NotFound";
 import LoginPage from "./Components/LoginPage";
 import SignupPage from "./Components/SignupPage";
+import Navbar from "./Components/Navbar";
 
 function App() {
   return (

@@ -3,6 +3,7 @@ import {useNavigate} from "react-router-dom";
 import axios from "axios";
 import pinIcon from "../assets/clip.png";
 import notFoundIcon from "../assets/404-error.png";
+import API from "../api/axios";
 
 
 function HomePage(){
@@ -13,13 +14,23 @@ function HomePage(){
     const [error,setError] = useState(null);
     const nav = useNavigate();
     
+    const token = localStorage.getItem("token");
+    if (!token) {
+        nav("/login");
+    }
+
     const fetchNotes = async() => {
         try {
             setLoading(true);
-            const respond = await axios.get(`${BASE_URL}/notes`);
+            const respond = await API.get("/notes");
             setNotes(respond.data.data);
+
         } catch (err) {
-            setError("Somthing went wrong...");
+            if (err.response?.status === 401 || err.response?.status === 403) {
+            nav("/login"); 
+            } else {
+            setError("Something went wrong...");
+            }
         } finally{
             setLoading(false);
         }
