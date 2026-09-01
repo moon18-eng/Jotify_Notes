@@ -28,7 +28,12 @@ function Navbar(){
 
     return(
         <div className="flex flex-row items-center justify-between pt-8 pb-3">
-            <h1 className=" font-black text-5xl text-gray-100 pl-20">Jotify</h1>
+            <h1 
+            className=" font-black text-5xl text-gray-100 pl-20 cursor-pointer"
+            onClick={()=>nav("/")}
+            >
+              Jotify Notes
+            </h1>
             <div className="flex flex-row items-center justify-center pr-20 gap-10">
                 <h1 className=" font-bold text-2xl text-gray-200">About</h1>
                 <h1 className=" font-bold text-2xl text-gray-200">Theme</h1>

@@ -6,17 +6,17 @@ export const SignUp = async(req,res) => {
     const {username, display_name, password, confirm_password} = req.body;
     
     if(!username || !display_name || !password || !confirm_password){
-        return res.status(400).json({success:false,message:"data needed"})
+        return res.status(400).json({success:false,message:"Data required, please fill all sections."})
     }
     
     if(password !== confirm_password){
-        return res.status(400).json({success:false,message:"passwords does not match"})
+        return res.status(400).json({success:false,message:"Passwords does not match!"})
     }
 
     try{
         const userCheck = await pool.query("SELECT * FROM users WHERE username = $1", [username])
         if( userCheck.rows.length > 0 ){
-            return res.status(400).json({success:false,message:"username already exist"})
+            return res.status(400).json({success:false,message:"Username already exist!"})
         }
 
         const key = 10
@@ -46,12 +46,12 @@ export const LogIn = async(req,res) => {
     try{
         const userCheck = await pool.query("SELECT * FROM users WHERE username = $1",[username])
         if(userCheck.rows.length === 0 ){
-            return res.status(400).json({success:false,message:"user does not exist"})
+            return res.status(400).json({success:false,message:"User does not exist! please try again."})
         }
         const user = userCheck.rows[0]
         const isMatch = await bcrypt.compare(password,user.password_hash)
         if(!isMatch){
-            return res.status(400).json({success:false, message:"wrong password"})
+            return res.status(400).json({success:false, message:"Wrong password! please try again."})
         }
 
         const token = jwt.sign(

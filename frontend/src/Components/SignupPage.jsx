@@ -27,7 +27,6 @@ function SignupPage() {
         <div
         className="flex justify-around items-center w-full h-full gap-20"
         >      
-            {error && <p>{error}</p>} 
             <form
             className="mb-4 ml-16 flex flex-col gap-8 justify-center items-center border-2 border-white/20 rounded-lg w-3/5 h-3/4 bg-transparent shadow-2xl"
             style={{backdropFilter: 'blur(20px)'}}
@@ -64,7 +63,7 @@ function SignupPage() {
                     onChange={(e) => setSignData({...signData, password: e.target.value })}
                     />
                     <input
-                    type="text"
+                    type="password"
                     className="h-16 w-5/6 rounded-full border-2 border-white/20 text-gray-100 bg-transparent focus:outline-none text-2xl placeholder:text-gray-200 px-6"
                     placeholder="Confirm password"
                     maxLength={20}
@@ -72,22 +71,25 @@ function SignupPage() {
                      value={signData.confirm_password}
                     onChange={(e) => setSignData({...signData, confirm_password: e.target.value })}
                     />
-
-                    <button
-                    className="h-16 w-2/3 rounded-full font-bold bg-white text-gray-700 text-2xl px-6 hover:bg-purple-950 hover:text-white"
-                    type='submit'
-                    > 
-                    Sign up
-                    </button>
-
-                    <p className="text-white text-xl"> Already have an account?{" "}  
-                        <span 
-                        className="font-bold cursor-pointer"
-                        onClick={() => nav('/login')}
+                    <div className="flex flex-col w-4/5 items-center justify-center gap-5">
+                        {error && <p className="text-red-500 text-xl font-medium">{error}</p>} 
+                        {!error && <p>{""}</p> }
+                        <button
+                        className="h-16 w-2/3 rounded-full font-bold bg-white text-gray-700 text-2xl px-6 hover:bg-purple-950 hover:text-white"
+                        type='submit'
                         > 
-                        Log in
-                        </span>
-                    </p>
+                        Sign up
+                        </button>
+
+                        <p className="text-white text-xl"> Already have an account?{" "}  
+                            <span 
+                            className="font-bold cursor-pointer"
+                            onClick={() => nav('/login')}
+                            > 
+                            Log in
+                            </span>
+                        </p>
+                    </div>
             </form>
             <div
             className="mb-16 flex flex-col gap-6 justify-center items-start text-left p-10 rounded-lg w-2/4 h-3/4 "

@@ -16,7 +16,7 @@ function HomePage(){
     
     const token = localStorage.getItem("token");
     if (!token) {
-        nav("/login");
+        nav("/login",{ replace: true });
     }
 
     const fetchNotes = async() => {
@@ -45,17 +45,12 @@ function HomePage(){
         <div className="flex-1 min-h-0 flex flex-col gap-6 px-20 mt-8">
             <div className="flex flex-row justify-between items-center">
                 <button 
-                    className="w-fit border-4 border-black bg-gray-400 rounded-xl py-2 px-6 font-extrabold text-2xl"
+                    className="w-fit text-white bg-gray-600 rounded-xl py-3 px-7 font-extrabold text-2xl"
                     onClick={() => nav('/noteForm/0')}
                     >
                     CREATE +
                 </button>
 
-                <button 
-                    className="w-fit border-4 border-black bg-gray-400 rounded-xl py-2 px-6 font-extrabold text-xl"
-                    onClick={fetchNotes}>
-                    🗘
-                </button>
             </div>
 
             {!loading && !error && (notes.length == 0) && 

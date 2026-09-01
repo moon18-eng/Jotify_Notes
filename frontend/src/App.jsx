@@ -1,5 +1,5 @@
 
-import { Routes, Route } from "react-router";
+import { Routes, Route , useLocation } from "react-router";
 import NotePage from "./Components/NotePage";
 import HomePage from "./Components/HomePage";
 import FormPage from "./Components/formPage";
@@ -10,9 +10,15 @@ import SignupPage from "./Components/SignupPage";
 import Navbar from "./Components/Navbar";
 
 function App() {
+  const location = useLocation()
+  const isAuth = location.pathname === '/login' || location.pathname == '/signUp'
   return (
     <div className="w-screen h-screen flex flex-col bg-cover bg-center bg-no-repeat bg-fixed"
-    style={{backgroundImage : `url("${bg}")`}}>
+    style={ isAuth?
+      
+        {backgroundImage : `url("${bg}")`}
+        : {backgroundColor:"#1e1e2f" }
+        }>
       <Navbar/>
       <Routes>
         <Route path="/" element={<HomePage />} />

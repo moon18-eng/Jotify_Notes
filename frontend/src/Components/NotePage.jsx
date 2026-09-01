@@ -17,7 +17,7 @@ function NotePage(){
 
     const token = localStorage.getItem("token");
     if (!token) {
-      nav("/login");
+      nav("/login",{ replace: true });
     }
 
     const fetchNote = async() => {
@@ -58,7 +58,7 @@ function NotePage(){
     return (
         <div className='flex-1 flex flex-col px-8'>
             <button 
-            className='flex items-start ml-12 mt-8 w-fit border-4 border-black bg-gray-400 rounded-xl py-2 px-6 font-extrabold text-2xl'
+            className='flex items-start ml-12 mt-8 w-fit  text-white bg-gray-600 rounded-lg py-3 px-6 font-extrabold text-2xl'
             onClick={() => nav('/')}
             >
             ◄  Cancel
@@ -70,10 +70,10 @@ function NotePage(){
                 </div>
             }
 
-            {!error && <div className='flex flex-row flex-1 gap-10 m-24 mt-14 border-4 border-gray-600 bg-gray-200' >
+            {!error && <div className='flex flex-row flex-1 gap-10 m-24 mt-14  bg-gray-700 rounded-2xl' >
                 
                 <div 
-                className="flex flex-col flex-1 border-4 border-black mx-12 mt-16 min-w-0 max-h-[500px] overflow-y-auto [scrollbar-width:none]"
+                className="flex flex-col flex-1 rounded-2xl mx-12 mt-16 min-w-0 max-h-[500px] overflow-y-auto [scrollbar-width:none]"
                 style={{background:note.bg_color}}
                 >
                     {loading && (
@@ -109,20 +109,20 @@ function NotePage(){
 
                 <div className="flex flex-col items-center justify-center gap-10 w-1/5 mr-20">
                    <button 
-                    className=' h-fit border-4 border-black bg-gray-400 rounded-xl py-3 px-28 font-extrabold text-3xl'
+                    className=' h-fit text-white bg-gray-900 rounded-2xl py-4 px-28 font-extrabold text-4xl'
                     onClick={() => nav(`/noteForm/${id}`)}
                     >
                     EDIT
                     </button> 
                     <button 
-                    className=' h-fit border-4 border-black bg-gray-400 rounded-xl py-3 px-24 font-extrabold text-3xl'
+                    className=' h-fit  text-white bg-gray-900 rounded-2xl py-4 px-24 font-extrabold text-4xl'
                     onClick={() => handelPin()}
                    >
                     { (!note.is_pinned) && <p>📌 PIN</p>} 
                     {(note.is_pinned)&& <p> UNPIN</p>}
                     </button> 
                     <button 
-                    className=' h-fit border-4 border-red-700 bg-red-300 rounded-xl py-3 px-24 font-extrabold text-3xl text-red-700'
+                    className=' h-fit border-4 border-red-700 bg-red-300 rounded-2xl py-4 px-24 font-extrabold text-4xl text-red-700'
                     onClick={() => deleteNote()}
                     >
                     DELETE
