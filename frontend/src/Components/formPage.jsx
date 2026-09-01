@@ -5,6 +5,8 @@ import ColorSelector from '../store/colorSelector'
 import { useNavigate  , useParams  } from 'react-router-dom'
 import notFoundIcon from "../assets/404-error.png";
 import API from "../api/axios";
+import pinIcon from "../assets/clip.png";
+
 
 function FormPage() {
   const [formData, setFormData] = useState({title:"", content:"", bg_color:"#d1d5db", text_color:"#000000"})
@@ -31,8 +33,8 @@ function FormPage() {
       }
       setFormData({title:"", content:"", bg_color:"#d1d5db", text_color:"#000000"})
       nav('/')
-    } catch (error) {
-      console.log(error);
+    } catch (err) {
+      setError(err.response?.data?.message || "Somthing went wrong");
     }
   }
 
@@ -50,22 +52,15 @@ function FormPage() {
         setLoading(false);
     }}
 
-
-
   useEffect(
   () => {fetchNote()}
   ,[])
 
-  
-  
-
-
   return (
   <div className='flex-1 flex flex-col items-center w-full'>
-    {/* Centered Top Bar with Cancel Button matching form width */}
-    <div className='w-full max-w-[95%] flex justify-start pl-12 mt-8'>
+    <div className='w-full flex justify-start pl-12 mt-8 '>
       <button 
-        className='text-white bg-gray-600 rounded-xl py-3 px-7 font-extrabold text-2xl'
+        className=' text-white bg-gray-600 rounded-xl py-3 px-7 ml-7 font-extrabold text-2xl'
         onClick={() => nav('/')}
       >
         ◄ Cancel
@@ -74,17 +69,27 @@ function FormPage() {
 
     {error && (
       <div className="mb-20 flex flex-col h-full items-center justify-center"> 
-        <img src={notFoundIcon} className="w-80" alt="Not Found" /> 
-        <p className="text-3xl font-extrabold">{error}</p>
+        <img src={notFoundIcon} className="w-96 " alt="Not Found" /> 
+        <p className="text-3xl font-extrabold text-white mt-10">{error}</p>
       </div>
     )}
     
     {!error && (
-      <form className='flex flex-row flex-1 justify-center items-stretch w-full my-6 border border-white' onSubmit={handelForm}>
+      <form className='flex flex-row flex-1 justify-center items-stretch w-full my-6 pt-8' 
+      onSubmit={handelForm}
+      >
         <div 
-          className='flex flex-col w-2/3 mb-12 ml-12 rounded-md py-2 px-6 rounded-2xl'
+          className='flex flex-col w-2/3 mb-12 ml-12 py-2 px-6 rounded-2xl'
           style={{ background: formData.bg_color }}
         >
+          {(formData.is_pinned) && 
+            <div className=" flex items-center justify-center w-14 h-12 bg-gray-700/60 rounded-lg">
+                <img 
+                src={pinIcon}
+                className="w-10 h-10" 
+                />
+            </div>
+          }
           <input
             className='h-28 border-2 border-gray-700 bg-transparent focus:outline-none border-none placeholder:[color:var(--text-color)] text-7xl font-extrabold px-5 pt-5 mb-5' 
             placeholder='Title...' 
@@ -109,18 +114,12 @@ function FormPage() {
             }}
           /> 
         </div>
-
         <div className='flex flex-col gap-8 items-center justify-center w-1/5 mb-12 ml-10 mr-12 bg-gray-700 rounded-2xl py-2 px-6'>
           <ColorSelector 
-            label="Bg color"
             selectedColor={formData.bg_color}
             onSelect={(color) => setFormData({ ...formData, bg_color: color })}
           />
-          <ColorSelector 
-            label="Text color"
-            selectedColor={formData.text_color}
-            onSelect={(color) => setFormData({ ...formData, text_color: color })}
-          />
+
           <button 
             type='submit' 
             className='border-4 border-yellow-600 bg-yellow-200 text-yellow-600 font-extrabold text-2xl rounded-xl px-20 py-3 mt-12'

@@ -55,15 +55,15 @@ function HomePage(){
 
             {!loading && !error && (notes.length == 0) && 
                 <div className="flex flex-col h-full items-center justify-center "> 
-                <img src={notFoundIcon} className="w-80"/> 
-                <p className="text-3xl font-extrabold">There is no notes!</p>
+                <img src={notFoundIcon} className="w-96"/> 
+                <p className="text-3xl font-extrabold mt-10 text-white">There is no notes!</p>
                 </div>
             }
 
             {error && !loading &&  
                 <div className="flex flex-col h-full items-center justify-center "> 
-                <img src={notFoundIcon} className="w-80"/> 
-                <p className="text-3xl font-extrabold">{error}</p>
+                <img src={notFoundIcon} className="w-96"/> 
+                <p className="text-3xl font-extrabold mt-10 text-white">{error}</p>
                 </div>
             }
 
@@ -73,31 +73,31 @@ function HomePage(){
                 {loading && 
                 <>
                     <div 
-                    className="flex flex-col border-2 border-slate-300  h-64 rounded-xl p-3 cursor-pointer bg-slate-300 animate-pulse"
+                    className="flex flex-col  h-64 rounded-xl p-3 cursor-pointer bg-gray-600 animate-pulse"
                     />  
                      <div 
-                    className="flex flex-col border-2 border-slate-300  h-64 rounded-xl p-3 cursor-pointer bg-slate-300 animate-pulse"
+                    className="flex flex-col  h-64 rounded-xl p-3 cursor-pointer bg-gray-600 animate-pulse"
                     />  
                      <div 
-                    className="flex flex-col border-2 border-slate-300  h-64 rounded-xl p-3 cursor-pointer bg-slate-300 animate-pulse"
+                    className="flex flex-col  h-64 rounded-xl p-3 cursor-pointer bg-gray-600 animate-pulse"
                     />  
                      <div 
-                    className="flex flex-col border-2 border-slate-300  h-64 rounded-xl p-3 cursor-pointer bg-slate-300 animate-pulse"
+                    className="flex flex-col  h-64 rounded-xl p-3 cursor-pointer bg-gray-600 animate-pulse"
                     />  
                      <div 
-                    className="flex flex-col border-2 border-slate-300  h-64 rounded-xl p-3 cursor-pointer bg-slate-300 animate-pulse"
+                    className="flex flex-col  h-64 rounded-xl p-3 cursor-pointer bg-gray-600 animate-pulse"
                     />  
                      <div 
-                    className="flex flex-col border-2 border-slate-300  h-64 rounded-xl p-3 cursor-pointer bg-slate-300 animate-pulse"
+                    className="flex flex-col  h-64 rounded-xl p-3 cursor-pointer bg-gray-600 animate-pulse"
                     />  
                      <div 
-                    className="flex flex-col border-2 border-slate-300  h-64 rounded-xl p-3 cursor-pointer bg-slate-300 animate-pulse"
+                    className="flex flex-col  h-64 rounded-xl p-3 cursor-pointer bg-gray-600 animate-pulse"
                     />  
                      <div 
-                    className="flex flex-col border-2 border-slate-300  h-64 rounded-xl p-3 cursor-pointer bg-slate-300 animate-pulse"
+                    className="flex flex-col  h-64 rounded-xl p-3 cursor-pointer bg-gray-600 animate-pulse"
                     />  
                      <div 
-                    className="flex flex-col border-2 border-slate-300  h-64 rounded-xl p-3 cursor-pointer bg-slate-300 animate-pulse"
+                    className="flex flex-col  h-64 rounded-xl p-3 cursor-pointer bg-gray-600 animate-pulse"
                     />  
                 </>
                     
@@ -118,10 +118,12 @@ function HomePage(){
                      <div className="flex flex-row justify-between">
                         <h1 className="ml-2 mt-2 text-3xl font-bold">{note.title}</h1>
                         {(note.is_pinned) && 
-                        <img 
-                        src={pinIcon} 
-                        className="w-10 h-10 bg-zinc-700/70 rounded-lg "             
-                        />
+                        <div className=" flex items-center justify-center w-14 h-12 bg-gray-700/60 rounded-lg">
+                            <img 
+                            src={pinIcon}
+                            className="w-10 h-10 ml-1" 
+                            />
+                        </div>
                         }
                      </div>
                         <p className="m-2 line-clamp-[8] break-all whitespace-pre-wrap ">{note.content}</p>

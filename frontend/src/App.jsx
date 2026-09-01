@@ -13,7 +13,7 @@ function App() {
   const location = useLocation()
   const isAuth = location.pathname === '/login' || location.pathname == '/signUp'
   return (
-    <div className="w-screen h-screen flex flex-col bg-cover bg-center bg-no-repeat bg-fixed"
+    <div className="w-screen h-screen flex flex-col  bg-cover bg-center bg-no-repeat bg-fixed"
     style={ isAuth?
       
         {backgroundImage : `url("${bg}")`}

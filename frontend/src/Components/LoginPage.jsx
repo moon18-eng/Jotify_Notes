@@ -31,10 +31,12 @@ function LoginPage() {
             className=" mb-4 flex flex-col gap-10 justify-center items-center  border-2 border-white/20 rounded-lg w-1/3 h-3/4 bg-transparent shadow-2xl"
             style={{backdropFilter: 'blur(20px)'}}
             onSubmit={handelLogin}
-            >
+            autoComplete="off"            >
                 <h1 className="mb-11 font-extrabold text-6xl text-gray-200 ">Login</h1>
                 <input
                 type="text"
+                name="username"
+                autoComplete="off"
                 className="h-16 w-4/5 rounded-full border-2 border-white/20 text-gray-100 bg-transparent focus:outline-none text-2xl placeholder:text-gray-200 px-6"
                 placeholder="Username"
                 maxLength={20}
@@ -44,6 +46,8 @@ function LoginPage() {
                 />
                 <input
                 type="password"
+                name="new-password"
+                autoComplete="new-password"
                 className="h-16 w-4/5 rounded-full border-2 border-white/20 text-gray-100 bg-transparent focus:outline-none text-2xl placeholder:text-gray-200 px-6"
                 placeholder="Password"
                 maxLength={20}
@@ -55,7 +59,7 @@ function LoginPage() {
                     {error && <p className="text-red-500 text-xl font-medium">{error}</p>} 
                     {!error && <p>{""}</p> }
                     <button
-                    className="h-16 w-4/5 rounded-full  hover:bg-purple-950 hover:text-white font-bold bg-white text-gray-700 text-2xl px-6"
+                    className="h-16 w-full rounded-full  hover:bg-gray-950 hover:text-white font-bold bg-white text-gray-700 text-2xl px-6"
                     type='submit'
                     > 
                     login

@@ -4,6 +4,8 @@ import { useState,useEffect } from "react";
 import axios from "axios";
 import notFoundIcon from "../assets/404-error.png";
 import API from "../api/axios";
+import pinIcon from "../assets/clip.png";
+
 
 
 function NotePage(){
@@ -78,25 +80,36 @@ function NotePage(){
                 >
                     {loading && (
                     <div className="flex flex-col gap-6 px-6 pt-9 animate-pulse">
-                        <div className="h-12 bg-slate-300 rounded-xl w-2/3 mb-2" />       
+                        <div className="h-12 bg-gray-600 rounded-xl w-2/3 mb-2" />       
                         <div className="flex flex-col gap-5">
-                            <div className="h-8 bg-slate-300 rounded-xl w-full" />
-                            <div className="h-8 bg-slate-300 rounded-xl w-fufull" />
-                            <div className="h-8 bg-slate-300 rounded-xl w-full" />
-                            <div className="h-8 bg-slate-300 rounded-xl w-full" />
-                            <div className="h-8 bg-slate-300 rounded-xl w-1/2" />
+                            <div className="h-8 bg-gray-600 rounded-xl w-full" />
+                            <div className="h-8 bg-gray-600 rounded-xl w-fufull" />
+                            <div className="h-8 bg-gray-600 rounded-xl w-full" />
+                            <div className="h-8 bg-gray-600 rounded-xl w-full" />
+                            <div className="h-8 bg-gray-600 rounded-xl w-1/2" />
                         </div>
                     </div>
                     )}
 
                     {!loading && !error &&
                     <>
-                    <h1 
-                    className="text-5xl font-extrabold px-6 pt-5 mb-5"
-                    style={{color:note.text_color}}
-                    >
-                        {note.title}
-                    </h1>
+                    <div className="flex items-center justify-between">
+                        <h1 
+                        className="text-5xl font-extrabold px-6 pt-5 mb-5"
+                        style={{color:note.text_color}}
+                        >
+                            {note.title}
+                        </h1>
+                        {(note.is_pinned) && 
+                        <div className=" flex items-center justify-center w-14 h-12 bg-gray-700/60 rounded-lg mr-6">
+                            <img 
+                            src={pinIcon}
+                            className="w-10 h-10 ml-1" 
+                            />
+                        </div>
+                        }
+                        
+                    </div>  
                     <p 
                     className="text-2xl px-6 pb-5 break-all whitespace-pre-wrap"
                     style={{color:note.text_color}}
