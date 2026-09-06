@@ -29,7 +29,8 @@ Clear Your Mind & Chaos With Jotify. A minimal, cozy full-stack note-taking app 
 
 ## Screenshots
 
-<img width="1920" height="1080" alt="login" src="https://github.com/user-attachments/assets/36f20805-2cab-4a81-8345-94ba41c2aadb" />
-<img width="1920" height="1080" alt="signup" src="https://github.com/user-attachments/assets/23447209-096d-48ea-b12f-3e5cff8e18f6" />
-<img width="1920" height="1080" alt="homePage" src="https://github.com/user-attachments/assets/13cd84dd-87dc-4877-a31e-070f0c56a1da" />
-<img width="1920" height="1080" alt="noteForm" src="https://github.com/user-attachments/assets/7c183f5e-ff4b-496a-bf6c-01a112cc1cc2" />
+<img width="1917" height="947" alt="login" src="https://github.com/user-attachments/assets/cb8add94-4c64-4c59-9110-48c5a2748425" />
+<img width="1917" height="947" alt="Signup" src="https://github.com/user-attachments/assets/65cba91e-1844-44e1-b90f-05f2f196b9a9" />
+<img width="1917" height="947" alt="Home" src="https://github.com/user-attachments/assets/06ee6519-688c-4df9-927f-5989ce26ce8f" />
+<img width="1917" height="947" alt="notePage" src="https://github.com/user-attachments/assets/621a6511-5e9d-4d0f-b570-28a47f23f481" />
+<img width="1917" height="947" alt="Form" src="https://github.com/user-attachments/assets/717a678f-bc7c-40b0-a240-e739fe19ded2" />
